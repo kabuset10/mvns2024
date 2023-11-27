@@ -1,0 +1,28 @@
+{% extends "MVNSweb/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="container" style="width:90%; margin:auto">
+        <div class="form_container">
+            <legend>
+                <center>
+                    <h3><b>Log In</b></h3>
+                </center>
+            </legend>
+            <hr>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <label for="username">Username:</label>
+                <input type="text" name="username" class="">
+
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="">
+                <br>
+                <button type="submit" class="btn btn-success">Log In</button>
+            </form>
+            <br>
+        </div>
+    </div>
+
+{% endblock content %}
+

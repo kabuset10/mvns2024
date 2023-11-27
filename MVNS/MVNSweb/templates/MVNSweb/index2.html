@@ -1,0 +1,23 @@
+{% extends "MVNSweb/base.html" %}
+{% load static %}
+{% block content %}
+    <legend>
+      <center>
+        <h3><b>MVNS Homepage</b></h3>
+      </center>
+    </legend>
+    <div class="form-row" style="width:90%; margin:auto">
+      <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+        <div class="home_choice" style="background-image: url('{% static "MVNSweb/Media/login_logo.png" %}')">
+          <a href="" class="clicable_div"></a>
+        </div>
+        <h3 style="text-align: center"> Login as Administrator</h3>
+      </div>
+      <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+        <div class="home_choice" style="background-image: url('{% static "MVNSweb/Media/view_logo.png" %}')">
+          <a href="" class="clicable_div"></a>
+        </div>
+        <h3 style="text-align: center">Search via Order Number</h3>
+      </div>
+    </div>
+{% endblock content %}

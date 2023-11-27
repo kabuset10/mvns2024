@@ -1,0 +1,30 @@
+{% extends "MVNSweb/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="container" style="width:90%; margin:auto">
+        <div class="form_container">
+            <a href="{% url 'MVNS-view' %}" class="float_left_link">Back</a>
+            <legend>
+                <center>
+                    <h3><b>User Profile</b></h3>
+                </center>
+            </legend>
+            <hr>
+            <div>
+                {% csrf_token %}
+                <label for="first_name">First Name:</label>
+                <p>{{ request.user.first_name }}</p>
+                <label for="last_name">Last Name:</label>
+                <p>{{ request.user.last_name }}</p>
+                <label for="username">Username:</label>
+                <p>{{ request.user.username }}</p>
+                <br>
+                <a href="{% url 'MVNS-changepass' %}" class="btn btn-primary">Change Password</a>
+            </div>
+            <br>
+        </div>
+    </div>
+
+{% endblock content %}
+

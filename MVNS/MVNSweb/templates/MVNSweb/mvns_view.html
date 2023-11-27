@@ -1,0 +1,66 @@
+{% extends "MVNSweb/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container" style="width:90%; margin:auto">
+      <legend>
+        <center>
+          <h3><b>Database</b></h3>
+        </center>
+      </legend>
+      <br>
+      {% if user.is_superuser %}
+        <p class="welcome_p">Welcome, Adnin </p>
+      {% else %}
+        <p class="welcome_p">Welcome, </p>
+        <div class="edit_logo">
+          <a class="profile_link" href="{% url 'MVNS-profile' %}">{{ user.first_name }} {{ user.last_name }}</a>
+        </div>
+      {% endif %}
+      <a class="float_right_link" href="{% url 'MVNS-logout' %}">Logout</a>
+      {% if user.is_superuser %}
+        {% include "MVNSweb/dashboard.html" %}
+      {% endif %}
+      <br>
+      <br>
+      <!-- Table Container -->
+      <div>
+        <table id='readingTable' class="view_table">
+          <!-- Table Header -->
+          <thead>
+            <tr>
+              <th>Order No.</th>
+              <th>Date</th>
+              <th class="short_cell">Time</th>
+              <th>Name</th>
+              <th>Plate No.</th>
+              <th class="number_data_cell">Calculated dB</th>
+              <th class="number_data_cell">dB Reading</th>
+              <th class="number_data_cell">Distance (cm)</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for val in Reading %}
+            <tr>
+              <td>
+                <div class="edit_logo">
+                  <a href="{% url 'MVNS-edit-data' val.pk %}">
+                    {{val.id}}
+                  </a>
+                </div>
+              </td>
+              <td>{{val.reading_date}}</td>
+              <td>{{val.reading_time}}</td>
+              <td>{{val.motorist_first_name}} {{""}} {{val.motorist_middle_initial}} {{""}} {{val.motorist_last_name}}</td>
+              <td>{{val.plate_number}}</td>
+              <td>{{val.db_calculated}}</td>
+              <td>{{val.db_reading}}</td>
+              <td>{{val.distance_reading}}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="{% static 'MVNSweb/JS/mvns_view.js' %}"></script>
+{% endblock content %}

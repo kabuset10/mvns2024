@@ -1,0 +1,44 @@
+{% extends "MVNSweb/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="container" style="width:90%; margin:auto">
+        <div class="form_container">
+            <a href="{% url 'MVNS-profile' %}" class="float_left_link">Back</a>
+            <legend>
+                <center>
+                    <h3><b>Change Password</b></h3>
+                </center>
+            </legend>
+            <hr>
+            <form id="id_password_change_form" method="POST">
+                {% csrf_token %}
+                <label for="old_password">Old Password:</label>
+                {{ form.old_password }}
+                
+                <label for="password1">New Password:</label>
+                {{ form.new_password1 }}
+                <p class="pass_rules">Your password can’t be too similar to your other personal information.</p>
+                <p class="pass_rules">Your password must contain at least 8 characters.</p>
+                <p class="pass_rules">Your password can’t be a commonly used password.</p>
+                <p class="pass_rules">Your password can’t be entirely numeric.</p>
+                <label for="password2">Confirm Password:</label>
+                {{ form.new_password2 }}
+                
+                <br>
+                <button type="submit" class="btn btn-success">Confirm</button>
+                <br>
+                <br>
+                {% for field in form %} 
+                    {% for error in field.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </form>
+
+            <br>
+        </div>
+    </div>
+
+{% endblock content %}
+

@@ -1,0 +1,49 @@
+{% extends "MVNSweb/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container" style="width:90%; margin:auto">
+        <legend>
+        <center>
+            <h3><b>User List</b></h3>
+        </center>
+        </legend>
+        <br>
+        <p>Welcome, <a href="{% url 'MVNS-view' %}">{{ user.first_name }} {{ user.last_name }}</a>
+            <a class="float_right_link" href="{% url 'MVNS-logout' %}">Logout</a></p>
+        {% include "MVNSweb/dashboard.html" %}
+        <br>
+        <br>
+        <!-- Table Container -->
+        <div>
+        <table id='readingTable' class="view_table">
+            <!-- Table Header -->
+            <thead>
+            <tr>
+                <th>Account No.</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in all_users %}
+            <tr>
+                <td>
+                    <div class="edit_logo">
+                        <a href="{% url 'MVNS-user-list-profile' user.id %}">
+                            {{user.id}}
+                        </a>
+                    </div>
+                </td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.username }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <script src="{% static 'MVNSweb/JS/mvns_view.js' %}"></script>
+{% endblock content %}
